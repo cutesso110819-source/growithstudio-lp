@@ -408,12 +408,25 @@
       <input class="cta-inp" type="text" placeholder="성함 또는 업체명">
       <input class="cta-inp" type="text" placeholder="연락처 또는 이메일">
       <input class="cta-inp" type="text" placeholder="문의 내용 (선택)">
-      <button class="btn-wht" onclick="sendPrompt('그로위드스튜디오 무료 상담 신청하고 싶어요')">무료 상담 신청하기 →</button>
+      <button class="btn-wht" onclick="submitConsult()">무료 상담 신청하기 →</button>
     </div>
     <p class="cta-contact">또는 직접 연락 &nbsp;·&nbsp; <a href="mailto:growith_studio@naver.com">growith_studio@naver.com</a> &nbsp;·&nbsp; 010.9134.4433</p>
   </section>
 
   <!-- FOOTER -->
+  <script>
+  function submitConsult() {
+    var name = document.querySelectorAll('.cta-inp')[0].value.trim();
+    var contact = document.querySelectorAll('.cta-inp')[1].value.trim();
+    var msg = document.querySelectorAll('.cta-inp')[2].value.trim();
+    if (!name || !contact) {
+      alert('성함(업체명)과 연락처를 입력해주세요.');
+      return;
+    }
+    var body = '안녕하세요, 그로위드스튜디오 무료 상담을 신청합니다.\n\n성함/업체명: ' + name + '\n연락처: ' + contact + (msg ? '\n문의 내용: ' + msg : '');
+    window.location.href = 'mailto:growith_studio@naver.com?subject=' + encodeURIComponent('[무료상담신청] ' + name) + '&body=' + encodeURIComponent(body);
+  }
+  </script>
   <footer class="footer">
     <div class="footer-logo"><span class="gro">GRO</span><span class="with">WITH</span> STUDIO</div>
     <div class="footer-copy">© 2026 그로위드스튜디오 · 대표 이소연 · All rights reserved.</div>
